@@ -10,5 +10,5 @@ The repository includes the following documents:
 - The LaTeX source file of the lecture notes;
 - answer key for the lecture notes.
 
-<img src="D:\$Research\pages\Fanwu001.github.io-master\projects\pengfu\cal.jpg" alt="cal" style="zoom:80%;" />
+
 
