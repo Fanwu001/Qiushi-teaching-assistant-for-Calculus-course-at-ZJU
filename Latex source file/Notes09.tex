@@ -1,0 +1,211 @@
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Note01}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage[UTF8]{ctex}
+
+
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 云峰朋辈辅学微甲提升2组 --- 第8讲}}
+\end{center}
+{\textbf{内容提要:}\ 曲线积分 \hspace{\fill} \textbf{Date:} May 29 2022    \\
+{ \textbf{主讲人:}} \ Famiglisti @CC98  \hspace{\fill} \textbf{Place:} 碧2党员之家 \\
+	\hrule
+~\\
+
+
+\paragraph*{\large 1 知识概要}\leavevmode \newline
+
+\begin{enumerate}
+    \item \textbf{第一类曲线积分————对弧长的曲线积分}\\
+    $\int_L f(x,y)ds=\lim_{\lambda  \to 0}\sum_{i = 1}^{n}f(\xi _i,\eta _i)\Delta s_i  $\\
+    $\int_L f(x,y,z)ds=\lim_{\lambda  \to 0}\sum_{i = 1}^{n}f(\xi _i,\eta _i,\varsigma _i)\Delta s_i  $\\
+    积分可视化：
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=10cm]{1.png}
+        \caption{积分值为红色区域面积}
+        \end{figure}
+  $\int_L ds=l  $,l为曲线长度
+    \item \textbf{第二类曲线积分————对坐标的曲线积分}
+    \begin{enumerate}
+        \item 二维空间：$\int _LP(x,y)dx+Q(x,y)dy$
+        \item 三维空间：$\int _LP(x,y,z)dx+Q(x,y,z)dy+R(x,y,z)dz$
+    \end{enumerate}
+    $\int _LP(x,y)dx+Q(x,y)dy=\int _L(P(x,y)\cos \alpha+Q(x,y)\cos \beta) ds$\\
+    $\int _LP(x,y,z)dx+Q(x,y,z)dy+R(x,y,z)dz=\int _L(P(x,y,z)\cos \alpha+Q(x,y,z)\cos \beta+R(x,y,z)\cos \gamma ) ds$
+    \item \textbf{Green公式}\\
+    $\iint_D(-\frac{\partial P}{\partial y}+\frac{\partial Q}{\partial x})dxdy=\int _{\partial D}Pdx+Qdy$\\
+    使用条件：
+    \begin{itemize}
+        \item D为$\mathbb{R} ^2$内的一个有界闭区域
+        \item $\partial D$由光滑曲线或逐段光滑曲线组成
+        \item 函数P(x,y),Q(x,y)在D内有关于自变量x,y的连续偏导数
+        \item $\partial D$的方向关于D是正向的
+    \end{itemize}
+    推论：由逐段光滑的简单曲线C所界的面积S可用曲线积分表示为$S=\oint _Cxdy=-\oint _Cydx=\frac{1}{2}\oint _Cxdy-ydx$
+\end{enumerate}
+
+
+
+\paragraph*{\large 2 真题}\leavevmode \newline
+【18-19final】设曲线C为一元函数$y=\int _1^x\sqrt{sin(t^2)}dt,x\in[1,\sqrt{\frac{\pi}{2}}]$
+的图像，试计算第一类曲线积分$\int _Cxds$
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【18-19final】设$\gamma $为圆柱螺线的一段$x=\cos t,y=\sin t,z=2t,0\leq t\leq \pi$
+其中$\gamma $的正向为参数t增加的方向，并设$\gamma_1 $为$\gamma $的前半段有向弧($t \in[0,\frac{\pi}{2}]$),
+其正向与$\gamma $一致，又设L为圆柱螺线$\gamma $上点$(0,1,\pi)$处的切线，并设$L_1$
+为切线L上一段以点$(0,1,\pi)$为起点，正向与$\gamma $正向一致，长度为$\sqrt{5}$的有向直线段，试计算第二类曲线积分
+$\int_{\gamma _1\cup L_1}yzdx+xzdy+xydz $
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【18-19final】设$D=\left\{(x,y)\in\mathbb{R} ^2|0\leq x \leq 1,y_1(x)\leq y \leq y_2(x) \right\} $,
+其中$y=y_1(x),y=y_2(x)$是[0,1]上的连续函数，u(x,y)在包含D的一个开集上
+有连续的一阶偏导函数，设D的边界$\partial D$的正向为逆时针方向\\
+证明：$\oint _{\partial D}udx=-\iint \frac{\partial u}{\partial y}dxdy$
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【19-20final】设二元函数P(x,y),Q(x,y)在平面但联通区域D上有所有连续的一阶偏导函数，且在D内的任意一条
+光滑的简单封闭曲线C上，都有$\oint _{C^+}P(x,y)dy-Q(x,y)dx=0$成立。试证明在D内有$\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}=0$恒成立 
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【20-21final】 设空间曲线C为$\left\{ (x,y,z)\in \mathbb{R} ^3|x=t,y=\frac{t^2}{2},z=\frac{t^3}{3},t \in [0,e] \right\} $,
+计算第一类曲线积分
+\begin{align}
+    I_1=\int _C \frac{xz}{\sqrt{1+2y+4y^2}}ds \notag
+\end{align}
+\\
+\\
+\\
+\\
+\\
+
+
+\paragraph*{\large 3 例题}\leavevmode \newline
+【example 1】计算积分
+\begin{align}
+    I=\oint _C\frac{\cos(\vec{r},\vec{n})}{r}ds \notag
+\end{align}
+其中C为逐段光滑的简单闭曲线,(0,0)在C外,$\vec{r}=(x,y)$,$r=|\vec{r}|=\sqrt{x^2+y^2}$,$\vec{n}$为
+C上的单位外法向量。\\
+思考：(0,0)在C内,(0,0)在C上的情形
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 2】计算
+\begin{align}
+    I=\oint _C\frac{e^y}{x^2+y^2}[(x\sin x+y\cos x)dx+(y\sin x-x\cos x)dy]\notag
+\end{align}
+其中$C:x^2+y^2=1$,取逆时针方向
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 3】设a,b,c为常数，满足$ac-b^2>0$,
+\begin{align}
+    w=\frac{xdy-ydx}{ax^2+2bxy+cy^2} \notag
+\end{align}
+求w关于原点(0,0)的循环常数$\oint _C w$,其中C可取围绕(0,0)的任一简单封闭曲线，并取逆时针方向为正向
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 4】计算  $x^2+y^2+z^2=a^2$在第一卦限部分的边界的质心坐标
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\newpage
+\paragraph*{\large 4 参考书目}\leavevmode \newline
+\begin{enumerate}
+    \item 陈纪修,於崇华,金路. 数学分析.下册[M]. 北京:高等教育出版社,2019.5
+    \item 汤家凤.考研数学复习大全[M]. 北京:中国原子能出版社,2019.2
+    \item 谢惠民.数学分析习题课讲义.下册[M]. 北京:高等教育出版社,2004.1
+    \item 苏德矿，吴明华.微积分.下[M].北京:高等教育出版社,2007.7
+\end{enumerate}
+\end{document}

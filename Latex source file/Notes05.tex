@@ -1,0 +1,320 @@
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Note01}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage[UTF8]{ctex}
+
+
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 云峰朋辈辅学微甲提升2组 --- 第5讲}}
+\end{center}
+{\textbf{内容提要:}\ 多元函数微分学的应用 \hspace{\fill} \textbf{Date:} May 1 2022    \\
+{ \textbf{主讲人:}} \ Famiglisti @CC98  \hspace{\fill} \textbf{Place:} 碧2党员之家 \\
+	\hrule
+~\\
+
+
+\paragraph*{\large 1 知识概要}
+\begin{enumerate}
+    \item  \textbf{多元函数的极值}
+    \begin{enumerate}
+        \item \textbf{驻点与极值的关系}
+    
+        \begin{itemize}
+        \item 使函数f的各个一阶偏导数同时为零的点为驻点
+        \item 而驻点不一定为极值点
+        \item 偏导数不存在的点也可能是极值点
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=12cm]{3.png}
+            \end{figure}
+        \end{itemize}
+
+        \item \textbf{求无条件极值步骤}
+        \begin{enumerate}
+            \item 由$\left\{
+                \begin{array}{lr}
+                f_x(x_0,y_0)=0 &  \\
+                f_y(x_0,y_0)=0 &  
+                \end{array}
+                \right.$求出驻点
+            \item 设$(x_0,y_0)$为一个驻点，另$A=f_{xx}(x_0,y_0),B=f_{xy}(x_0,y_0),C=f_{yy}(x_0,y_0)$
+            \begin{itemize}
+                \item $AC-B^2>0$
+                 \begin{itemize}
+                     \item 若A>0,$(x_0,y_0)$为极小值点
+                     \item 若A<0,$(x_0,y_0)$为极大值点
+                 \end{itemize}
+                \item $AC-B^2<0$ ，$(x_0,y_0)$一定不是极值点
+                \item $AC-B^2=0$，无法确定$(x_0,y_0)$是否为极值点
+            \end{itemize}
+            求无条件极值公式的推导理解了没QAQ
+            \end{enumerate}
+        \item \textbf{条件极值：拉格朗日乘数法}\\
+        基本方法要掌握\\
+        几何解释：
+        \begin{itemize}
+            \item 等式约束优化
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=10cm]{4.png}
+                \end{figure}
+            \hspace*{20pt}假设优化变量为$x_1,x_2$，蓝色虚线为目标函数$f(x_1,x_2)$的等高线，
+            绿线表示约束条件$h(x_1,x_2)=0$，因此最优解$x_1^*,x_2^*$一定在绿线上。
+            绿线与蓝色等高线可能相交、相切或没有交点。讨论取到最优解的情形，
+            先排除无交点的情况。若绿线与蓝线相交，说明绿线上存在点在这条等高线的内部和外部，
+            也就说明存在点使得目标函数的值更大或者更小，所以相交的情况也不会是优化问题的可行解。
+            因而蓝线与绿线相切的情况，可能会是优化问题可行解。
+            在代表约束条件的绿线与蓝色等高线相切的情况下，它们的切线相同，法向量相互平行，于是有$\lambda$:
+            \begin{equation}
+                f_{x_1}(x_1,x_2)+\lambda h_{x_1}(x_1,x_2)=0 \notag
+            \end{equation}
+            \begin{equation}
+                f_{x_2}(x_1,x_2)+\lambda h_{x_2}(x_1,x_2)=0 \notag
+            \end{equation}
+            与拉格朗日乘数法的方程相同。\\
+            \item 不等式约束优化\\
+            设有优化条件：$\min f(x_1,x_2),g(x_1,x_2)\leqslant0$
+            \begin{itemize}
+                \item 当目标函数的最优解不在约束条件区域时，优化问题的解
+                $x_1^*,x_2^*$位于$g(x_1^*,x_2^*)=0$即边界上，此时优化问题等价为等式约束优化问题
+                \item 当目标函数$f(x_1,x_2)$的最优解落在约束条件区域，优化问题的解$x_1^*,x_2^*$ 
+                位于$g(x_1^*,x_2^*)<0$的区域内，此时，直接极小化目标函数即可
+            \end{itemize}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=10cm]{5.png}
+                \end{figure}
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=10cm]{6.png}
+                \end{figure}
+        \end{itemize}
+        
+    \end{enumerate}
+    \item  \textbf{多元函数微分学在几何上的应用}
+    \begin{enumerate}
+        \item \textbf{方向导数与梯度}
+        \begin{itemize}
+            \item 方向导数
+            \begin{equation}
+                \frac{\partial f}{\partial \vec{l}}(p_0)=\lim_{t \to 0+}\frac{f(p_0+t\vec{l})-f(p_0)}{t} \notag 
+            \end{equation}
+            f在点$p_0$点沿方向$\vec{l}$的方向导数表示该点沿方向$\vec{l}$的变化率\\
+            特别地
+            \begin{itemize}
+                \item 若$\vec{l}=(1,0,0)$,$\frac{\partial f}{\partial \vec{l}}(p_0)=f_x(p_0)$
+                \item 若$\vec{l}=(0,1,0)$,$\frac{\partial f}{\partial \vec{l}}(p_0)=f_y(p_0)$
+            \end{itemize}
+            若f在$p_0$点可微，则f在$p_0$点沿任何方向$\vec{l}$的方向导数存在，且
+            \begin{equation}
+                \frac{\partial f}{\partial \vec{l}}(p_0)=
+                \frac{\partial f}{\partial x}(p_0)\cos \alpha+
+                \frac{\partial f}{\partial y}(p_0)\cos \beta+
+                \frac{\partial f}{\partial z}(p_0)\cos \gamma \notag
+            \end{equation}
+            \item 梯度
+            \begin{equation}
+                gradf(x,y,z)=
+                \frac{\partial f}{\partial x}(x,y,z)\vec{i}+
+                \frac{\partial f}{\partial y}(x,y,z)\vec{j}+
+                \frac{\partial f}{\partial z}(x,y,z)\vec{k} \notag
+            \end{equation}
+            梯度的方向是函数在该点增长最快的方向
+        \end{itemize}
+        
+        \item \textbf{空间曲面的切平面与法线}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=10cm]{1.png}
+            \end{figure}
+        曲面$F(x,y,z)=0$在点$M_0(x_0,y_0,z_0)$处的切平面方程为：
+        \begin{equation}
+            \pi:F'_x(x_0,y_0,z_0)(x-x_0)+F'_y(x_0,y_0,z_0)(y-y_0)+F'_z(x_0,y_0,z_0)(z-z_0)=0 \notag
+        \end{equation}
+        \item \textbf{空间曲线的切线与法平面}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=10cm]{2.png}
+            \end{figure}
+            曲线L:
+            $\left\{
+            \begin{array}{lr}
+            F(x,y,z)=0 &  \\
+            G(x,y,z)=0 &  
+            \end{array}
+            \right.$在点$M_0(x_0,y_0,z_0)$处的法平面方程为：
+            \begin{equation}
+                \pi: 
+                \begin{vmatrix}F'_y&F'_z\\G'_y&G'_z\end{vmatrix}_{M_0}\cdot (x-x_0)+
+                \begin{vmatrix}F'_z&F'_x\\G'_z&G'_x\end{vmatrix}_{M_0}\cdot (y-y_0)+
+                \begin{vmatrix}F'_x&F'_y\\G'_x&G'_y\end{vmatrix}_{M_0}\cdot (z-z_0)=0
+                \notag
+            \end{equation}
+    \end{enumerate}
+\end{enumerate}
+
+    
+
+\paragraph*{\large 2 例题}\leavevmode \newline
+【example 1】设$\vec{n}$为曲面$2x^2+3y^2+z^2=6$在点P(1,1,1)处的外法向量，
+求$u=\frac{\sqrt{6x^2+8y^2}}{z}$在点P处沿$\vec{n}$的方向导数
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 2】设F(u,v)一阶连续可微，证明：曲面$F(\frac{x-a}{z-c},\frac{y-b}{z-c})=0$
+上任意一点处的切平面都过一个固定点。
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 3】 设f(x,y)在$p_0(x_0,y_0)$点可微，$\vec{l_1},\cdots,\vec{l_n}$为n个单位
+向量，相邻两向量夹角为$\frac{2\pi}{n}$.
+证明：$\sum_{i = 1}^{n} \frac{\partial f}{\partial \vec{l_i}}(x_0,y_0)=0$ 
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 4】 在平面上给定不在同一条直线上的三点$M_i(a_i,b_i),i=1,2,3$,
+求平面内的这样一点，使它至此三定点的距离之和最小。  \\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 5】 椭球面$\frac{x^2}{3}+y^2+\frac{z^2}{2}=1$被通过原点的
+平面$2x+y+z=0$截成一个椭圆l,求此椭圆的面积 \\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 6】求$f(x,y,z)=\ln x+2\ln y+3\ln z$的最大值，其中
+$x^2+y^2+z^2=6r^2(r>0),x>0,y>0,z>0$,且证明对任何正数a,b,c,有
+\begin{equation}
+    ab^2c^3\leq 108(\frac{a+b+c}{6})^6 \notag
+\end{equation} \\
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph*{\large 3 真题解析}\leavevmode \newline
+
+【18-19final】设有二次曲面$S:x^2+xy+y^2-z^2=1$,试求曲面S上点(1,-1,0)
+处的切平面$\pi$的平面方程。\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+
+【18-19final】设f(x,y)在包含单位闭圆盘$D=\left\{(x,y)\in \mathbb{R} ^2|x^2+y^2\leqslant 1\right\} $的
+一个开集上具有连续的一阶偏导函数，且满足$\forall (x,y)\in D,|f(x,y)|\leqslant 1$\\
+试证：存在一点$(x^*,y^*)\in\left\{(x,y)\in \mathbb{R} ^2|x^2+y^2< 1\right\}$使得
+$[f_1'(x^*,y^*)]^2+[f_2'(x^*,y^*)]^2\leqslant 16$成立
+ \leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【19-20final】设$f(x,y)=x^\frac{2}{3}y^\frac{1}{3}$,试求f在点(0,0)处
+沿方向$\vec{l}=(\cos \alpha,\sin \alpha)$的方向导数$\frac{\partial f}{\partial \vec{l}}(0,0)$,
+并求当该方向导数取到最大值时，对应的$\sin \alpha$的值
+\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【20-21final】设D是平面上的一个有界闭区域,z=z(x,y)在D上连续，
+在$D^o$上有所有的连续二阶偏导函数，且满足
+$\forall(x,y)\in D^o,
+\frac{\partial^2 z}{\partial x^2}(x,y)+
+\frac{\partial^2 z}{\partial y^2}(x,y)=0,
+\frac{\partial^2 z}{\partial x \partial y}(x,y)\neq 0$\\
+证明：z(x,y)在D上的最值只能在D的边界上取到。
+\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+
+
+\paragraph*{\large 5 参考书目}\leavevmode \newline
+\begin{enumerate}
+    \item 陈纪修,於崇华,金路. 数学分析.下册[M]. 北京:高等教育出版社,2019.5
+    \item 汤家凤.考研数学复习大全[M]. 北京:中国原子能出版社,2019.2
+    \item 谢惠民.数学分析习题课讲义.下册[M]. 北京:高等教育出版社,2004.1
+    \item 苏德矿，吴明华.微积分.下[M].北京:高等教育出版社,2007.7
+\end{enumerate}
+\end{document}

@@ -1,0 +1,269 @@
+
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Note01}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage[UTF8]{ctex}
+
+%%% Colours used in field vectors and propagation direction
+\definecolor{mycolor}{rgb}{1,0.2,0.3}
+\definecolor{brightgreen}{rgb}{0.4, 1.0, 0.0}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{darkelectricblue}{rgb}{0.33, 0.41, 0.47}
+\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6}
+\definecolor{darktangerine}{rgb}{1.0, 0.66, 0.07}
+\definecolor{emerald}{rgb}{0.31, 0.78, 0.47}
+\definecolor{palatinatepurple}{rgb}{0.41, 0.16, 0.38}
+\definecolor{pastelviolet}{rgb}{0.8, 0.6, 0.79}
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 云峰朋辈辅学微甲提升2组 --- 第3讲}}
+\end{center}
+{\textbf{内容提要:}\ 傅里叶级数 \hspace{\fill} \textbf{Date:} April 3 2022    \\
+{ \textbf{主讲人:}} \ Famiglisti @CC98  \hspace{\fill} \textbf{Place:} 碧2党员之家 \\
+	\hrule
+~\\
+\begin{center}
+\textbf{\large{数学主要的目标是公众的利益和自然现象的解释。--傅里叶} }
+\end{center}  
+\paragraph*{\large 1 知识概要}
+\begin{enumerate}
+    \item  \textbf{傅里叶分析之开创性}\\
+    \hspace*{0.7cm}任何周期函数，都可以看作是不同振幅，不同相位正弦波的叠加。就像，
+    利用对不同琴键不同力度，不同时间点的敲击，可以组合出任何一首乐曲。
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=12cm]{p1.png}
+        \end{figure}
+    
+    \hspace*{0.7cm}除了纯数学之外，主要的受益者不是热力学，而是工程学，特别是电子工程。
+    傅里叶变换已经成为科学和工程中的常规工具;它的应用包括从声音记录中去除噪音;利用x射线衍
+    射发现DNA等大型生物化学分子的结构;改善无线电接收，处理从空中拍摄的照片。
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=10cm]{p2.png}
+        \end{figure}
+    \item \textbf{幂级数与傅里叶级数}\\
+    \hspace*{0.7cm}都用于将复杂函数转换成熟悉、易分析的简单函数，幂级数的局限性在于，
+    用Taylor级数部分和近似代替函数f(x)时,要求f(x)至少有n阶的导数,且
+    一般来说Taylor多项式仅在$x_0$附近与f(x)吻合得较为理想。与Taylor展开相比,Fourier展开对于f(x)
+    的要求要宽容很多,并且它的部分和在整个区间都与f(x)吻合得较为理想。\\
+    \item  \textbf{三角函数系及正交性}\\
+    \hspace*{0.7cm}傅立叶分析之所以有效，是因为它的基本波形既正交又完整，
+    而且如果适当地叠加，它们足以表示任何信号。\\
+    三角函数系:\quad $1,\cos x,\sin x,\cos 2x,\sin 2x,\cos 3x,\sin 3x,\cos 4x,\sin 4x\cdots \cdots $
+    \begin{enumerate}
+        \item 
+            $\int_{-\pi }^{\pi } \cos mx\cos nx \,dx= $
+            $\left\{
+            \begin{array}{lr}
+            2\pi,m=n=0, &  \\
+            \pi,m=n\geq 1,\\
+            0,m\neq n, &  
+            \end{array}
+            \right.$
+        \item 
+            $\int_{-\pi }^{\pi } \sin mx\sin nx \,dx= $
+            $\left\{
+            \begin{array}{lr}
+            \pi,m=n, &  \\
+            0,m\neq n, &  
+            \end{array}
+            \right.$
+    \end{enumerate}
+~\\
+    \item  \textbf{狄利克雷充分条件}\\
+    设函数f(x)是以$2\pi$ 为周期的函数,若f(x)在$[-\pi,\pi]$上满足：
+    \begin{enumerate}
+        \item f(x)在$[-\pi,\pi]$上连续或只有有限个第一类间断点
+        \item f(x)在$[-\pi,\pi]$上上只有有限个极值点
+    \end{enumerate}
+    则函数f(x)可展开成三角级数$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx)  $,
+    其中系数计算公式为
+    \begin{gather}
+        a_0=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x) \,dx \notag\\
+        a_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx \,dx \notag\\
+        b_n=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx \,dx \notag
+    \end{gather}
+    级数的收敛域为$(-\infty,\infty)$\\
+    级数$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx)  $与f(x)的关系：\\
+    \begin{enumerate}
+        \item 当x为f(x)的连续点时,$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx) =f(x) $
+        \item 当x为f(x)的间断点时,$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx) =\frac{f(x-0)+f(x+0)}{2} $
+    \end{enumerate}
+~\\
+    \item  \textbf{间断点}\\
+    函数连续的定义是什么？
+      \begin{enumerate}
+          \item 第一类间断点: $f(x_0+)\neq f(x_0-)$ 
+          \item 第二类间断点： 左右极限至少有一个不存在
+          \item 第三类间断点：$f(x_0+)=f(x_0-),f(x_0)无意义$
+      \end{enumerate}
+~\\
+    \item  \textbf{定义于$[0,\pi]$上f(x)的正弦级数与余弦级数}\\
+    step1:\quad f(x)奇延拓or偶延拓F(x)\\
+    step2:\quad 将F(x)在$[-\pi,\pi]$上展成傅里叶级数
+    \begin{enumerate}
+        \item 奇延拓展成正弦级数\\
+        \begin{gather}
+            a_0=0 \notag\\
+            a_n=0 \notag\\
+            b_n=\frac{2}{\pi}\int_{0}^{\pi}f(x) \sin{nx} \,dx \notag
+        \end{gather}
+        正弦级数为$ \sum_{n = 1}^{\infty} b_n \sin nx  $
+        \item 偶延拓展成余弦级数
+        \begin{gather}
+            a_0=\frac{2}{\pi}\int_{0}^{\pi}f(x) \,dx \notag\\
+            a_n=\frac{2}{\pi}\int_{0}^{\pi}f(x)\cos nx \,dx \notag\\
+            b_n=0 \notag\\
+        \end{gather}
+        余弦级数为$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} a_n \cos nx  $
+    \end{enumerate}
+    \newpage
+    \item  \textbf{一些变形}
+    \begin{enumerate}
+        \item 周期为2l的函数的傅里叶级数
+        \item 定义于$[-l,l]$上的函数f(x)的傅里叶级数
+        \item 定义于$[0,l]$上的函数f(x)的正弦级数与余弦级数
+    \end{enumerate}
+~\\
+    \item \textbf{Parseval等式}\\
+    \begin{gather}
+        f(x)\sim \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx)  \notag\\
+        \frac{a_0^2}{2}+\sum_{n = 1}^{\infty} (a_n^2+b_n^2)= \frac{1}{\pi}\int_{-\pi}^{\pi}f^2(x)  \,dx   \notag
+    \end{gather}
+    成立条件,f在$[-\pi,\pi]$内平方可积,推广形式：
+    \begin{gather}
+        \frac{a_0\alpha _0}{2}+\sum_{n = 1}^{\infty} (a_n\alpha _n+b_n\beta _n)= \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)  \,dx   \notag
+    \end{gather}
+    成立条件,f,g在$[-\pi,\pi]$内平方可积
+\end{enumerate}
+
+\paragraph*{\large 2 例题}\leavevmode \newline
+【example 1】 $f(x)=x^2\quad (0\leq x<1)$展成正弦级数级数,设其和函数
+为S(x),求$S(-3),S(-\frac{15}{2} )$\\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 2】 将函数$f(x)=x^2\quad (-\pi<x<\pi)$展成Fourier级数,并求
+$\sum_{n = 1}^{\infty} \frac{(-1)^n}{n^2}$  \\
+\\
+\\
+\\
+\\
+\\
+\\
+【example 3】 将函数$f(x)=\left\lvert x\right\rvert  (-\pi\leq x\leq \pi)$展成Fourier级数,并求
+$\sum_{n = 1}^{\infty} \frac{1}{n^2}$  \\
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph*{\large 3 真题解析}\leavevmode \newline
+【18-19mid】将函数$f(x)=e^x\quad (0\leq x< 2\pi)$展成周期为$2\pi$的Fourier级数 \leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【19-20final】利用傅里叶级数理论证明:$\forall x\in (0,\pi),
+\sum_{n = 1}^{\infty} \frac{\sin nx}{n}=\frac{\pi-x}{2}    $\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【20-21final】$f(x)=e^x\quad (0<x\leq 1)$,
+将f延拓成$\mathbb{R} $上周期为2的函数，记为f，设其傅里叶级数
+$ \frac{a_0}{2}+\sum_{n = 1}^{\infty} (a_n \cos nx+b_n\sin nx)  $
+，求$\sum_{n = 1}^{\infty} (-1)^na_n ,\sum_{n = 1}^{\infty} a_n$\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【20-21final】求$\sum_{n = 1}^{\infty}(-1)^n\frac{n}{n+\frac{1}{2} }x^{2n} $
+的收敛半径、和函数\leavevmode \newline  
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph*{\large 4 级数综合}\leavevmode \newline
+【ex1】设f(x)在$[ 0,+\infty]$上连续，且$\int_{0}^{+\infty}f^2(x) \,dx $收敛,令$a_n=\int_{0}^{1}f(nx)  \,dx $,证明
+ $\sum_{n = 1}^{\infty} \frac{a_n^2}{n}  $收敛
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【ex2】求$\sum_{n = 1}^{\infty} \frac{1}{n^4},\sum_{n = 1}^{\infty} \frac{1}{n^6}  $\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【ex3】求$1+\sum_{n = 1}^{\infty} \frac{(2n-1)!!}{(2n)!!x^n}$的和函数  
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph*{\large 5 参考书目}\leavevmode \newline
+\begin{enumerate}
+    \item 陈纪修,於崇华,金路. 数学分析.下册[M]. 北京:高等教育出版社,2019.5
+    \item 汤家凤.考研数学复习大全[M]. 北京:中国原子能出版社,2019.2
+    \item 谢惠民.数学分析习题课讲义.下册[M]. 北京:高等教育出版社,2004.1
+\end{enumerate}
+\end{document}

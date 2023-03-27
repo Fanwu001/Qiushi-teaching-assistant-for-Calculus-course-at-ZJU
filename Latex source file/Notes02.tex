@@ -1,0 +1,207 @@
+
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Note01}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage[UTF8]{ctex}
+
+%%% Colours used in field vectors and propagation direction
+\definecolor{mycolor}{rgb}{1,0.2,0.3}
+\definecolor{brightgreen}{rgb}{0.4, 1.0, 0.0}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{darkelectricblue}{rgb}{0.33, 0.41, 0.47}
+\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6}
+\definecolor{darktangerine}{rgb}{1.0, 0.66, 0.07}
+\definecolor{emerald}{rgb}{0.31, 0.78, 0.47}
+\definecolor{palatinatepurple}{rgb}{0.41, 0.16, 0.38}
+\definecolor{pastelviolet}{rgb}{0.8, 0.6, 0.79}
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 云峰朋辈辅学微甲提升2组 --- 第2讲}}
+\end{center}
+{\textbf{内容提要:}\ 幂级数 \hspace{\fill} \textbf{Date:} March 27 2022    \\
+{ \textbf{主讲人:}} \ Famiglisti @CC98  \hspace{\fill} \textbf{Place:} 碧2党员之家 \\
+	\hrule
+
+    
+\paragraph*{\large 1 知识概要}
+\begin{enumerate}
+    \item  函数项级数的定义
+    \item  幂级数基本定理——Abel定理
+    \item  求收敛半径与收敛域的两种基本方法（根值、比值）
+    \item  幂级数的分析性质（连续性、逐项可导性、逐项可积性、收敛半径不变性）
+    \item  绝对收敛与条件收敛
+\end{enumerate}
+
+\paragraph*{\large 2 基本题型}
+
+\paragraph*{题型一：求幂级数的收敛半径和收敛域}\leavevmode \newline
+根值法、比值法、换元法\newline
+【example 1】 求 $\sum_{n = 1}^{\infty}\frac{1}{2n+1} (\frac{1-x}{1+x})^n$的收敛域\\
+\\
+\\
+\\
+\\
+\paragraph*{题型二：幂级数求和函数} \leavevmode \newline
+别忘了求收敛半径和收敛域！\leavevmode \newline
+\textbf{情形一：}求$\sum_{n = 0}^{\infty} P(n)x^n $的和函数，
+其中P(n)为n的多项式,求和函数常用工具
+\begin{enumerate}[label={\alph*}] 
+    \item 级数的逐项可积性
+    \item $\sum_{n = 0}^{\infty}x^n=\frac{1}{1-x}(-1<x<1)  $
+    \item $\sum_{n = 0}^{\infty}(-1)^nx^n=\frac{1}{1+x}(-1<x<1)  $
+\end{enumerate}
+【example1】$\sum_{n = 1}^{\infty}\frac{n}{2^{n+1}} (x-1)^{2n+1}$\newline
+\\
+\\
+\\
+\\
+\\
+\\
+【example2】 $\sum_{n = 0}^{\infty}n^2x^n$\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+
+\noindent\textbf{情形二：}求$\sum_{n = 0}^{\infty} \frac{x^n}{ P(n)} $的和函数，
+其中P(n)为n的多项式,求和函数常用工具
+\begin{enumerate}[label={\alph*}] 
+    \item 级数的逐项可导性
+    \item $\sum_{n = 1}^{\infty}\frac{(-1)^{n-1}x^n}{n} =\ln (1+x) (-1<x\leqslant 1)  $
+    \item $\sum_{n = 1}^{\infty}\frac{x^n}{n} =-\ln (1-x) (-1\leqslant x<1)  $
+\end{enumerate}
+【example1】$\sum_{n = 1}^{\infty}\frac{x^{n+1}}{n(n+1)2^n} $\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+
+\noindent【example2】$\sum_{n = 1}^{\infty}\frac{(-1)^nx^{2n-1}}{n(2n-1)} $\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+
+\noindent\textbf{情形三：}幂级数系数的分母中含n!,求和函数常用工具
+\begin{enumerate}[label={\alph*}] 
+    \item $\sum_{n = 0}^{\infty}\frac{x^n}{n!} =e^x(-\infty <x<+\infty )  $
+    \item $\sum_{n = 0}^{\infty}\frac{(-1)^nx^{2n}}{2n!} =\cos x(-\infty <x<+\infty )  $
+    \item $\sum_{n = 0}^{\infty}\frac{(-1)^nx^{2n+1}}{(2n+1)!} =\sin  x(-\infty <x<+\infty )  $
+    \item 求和函数满足的微分方程
+\end{enumerate}
+【example1】$\sum_{n = 0}^{\infty}\frac{n^2+1}{2^nn!} x^n$
+\\
+\\
+\\
+\\
+\\
+【example2】$\sum_{n = 0}^{\infty}\frac{(2n)!!}{(2n+1)!!} x^{2n+1}$ (-1<x<1)
+\\
+\\
+\\
+\\
+\\
+\textbf{情形四：}求$\sum_{n = 0}^{\infty} P(n)x^n $的和函数,其中P(n)为复杂分式，常通过换元等方法将分式
+化为标准多项式或标准分式\leavevmode \newline
+【example1】$\sum_{n = 0}^{\infty}\frac{(n-1)^2}{n+1} x^n$
+\\
+\\
+\\
+\\
+\\
+\paragraph*{题型三：函数展成幂级数} \leavevmode \newline
+积分法、微分法、裂项法、熟记常用级数展开公式\leavevmode \newline
+【example1】将$f(x)=\arctan \frac{1+x}{1-x} $展成x的幂级数
+\\
+\\
+\\
+\\
+\\
+【example2】求$\ln \frac{\sin x}{x}$在x=0的幂级数展开(到$x^4$)\leavevmode \newline 
+\\
+\\
+\\
+\\
+\\
+\paragraph*{题型四：特殊的常数项级数的求和}\leavevmode \newline
+将数项级数中的$a^n$代换为$x^n$,并求和函数\leavevmode \newline
+【example1】$\sum_{n = 2}^{\infty}\frac{1}{2^n(n^2-1)}$
+\\
+\\
+\\
+\\
+\\
+\\
+\paragraph*{\large 3 真题解析}\leavevmode \newline
+【18-19mid】判断级数$\sum_{n = 1}^{\infty} \frac{1}{1+\sqrt{2}+\cdots +\sqrt{n} }$ 的敛散性 \leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【18-19mid】将$f(x)=\arcsin x$展开成x的幂级数,并求$f^{(99)}(0)$\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+【18-19mid】设$0<a_0<1,a_{n+1}=a_{n}(1-a_{n})(n=0,1,2,\cdots )$,证明
+\begin{enumerate}
+    \item $\sum_{n = 0}^{\infty} (-1)^na_n$收敛 
+    \item $\sum_{n = 0}^{\infty} a_n$发散
+\end{enumerate}\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+【18-19final】求幂级数$\sum_{n = 2}^{\infty}(-1)^n\frac{x^n}{n+1}$的收敛半径与和函数\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+【19-20final】求级数$\sum_{n = 1}^{\infty} (-1)^n\frac{\alpha (\alpha -1)\cdots (\alpha -n+1)}{(2^n+3^n)n!}$ 的收敛半径\leavevmode \newline
+\\
+\\
+\\
+\\
+\\
+\\
+\end{document}

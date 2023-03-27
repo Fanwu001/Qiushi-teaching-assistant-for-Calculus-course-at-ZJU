@@ -1,0 +1,131 @@
+
+%\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\title{Note01}
+\nonstopmode
+%\usepackage[utf-8]{inputenc}
+\usepackage{graphicx} % Required for including pictures
+\usepackage[figurename=Figure]{caption}
+\usepackage{float}    % For tables and other floats
+\usepackage{verbatim} % For comments and other
+\usepackage{amsmath}  % For math
+\usepackage{amssymb}  % For more math
+\usepackage{fullpage} % Set margins and place page numbers at bottom center
+\usepackage{paralist} % paragraph spacing
+\usepackage{listings} % For source code
+\usepackage{subfig}   % For subfigures
+%\usepackage{physics}  % for simplified dv, and 
+\usepackage{enumitem} % useful for itemization
+\usepackage{siunitx}  % standardization of si units
+
+\usepackage{tikz,bm} % Useful for drawing plots
+%\usepackage{tikz-3dplot}
+\usepackage{circuitikz}
+\usepackage[UTF8]{ctex}
+
+%%% Colours used in field vectors and propagation direction
+\definecolor{mycolor}{rgb}{1,0.2,0.3}
+\definecolor{brightgreen}{rgb}{0.4, 1.0, 0.0}
+\definecolor{britishracinggreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+\definecolor{darkelectricblue}{rgb}{0.33, 0.41, 0.47}
+\definecolor{darkpowderblue}{rgb}{0.0, 0.2, 0.6}
+\definecolor{darktangerine}{rgb}{1.0, 0.66, 0.07}
+\definecolor{emerald}{rgb}{0.31, 0.78, 0.47}
+\definecolor{palatinatepurple}{rgb}{0.41, 0.16, 0.38}
+\definecolor{pastelviolet}{rgb}{0.8, 0.6, 0.79}
+\begin{document}
+
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 云峰朋辈辅学微甲提升2组 --- 第1讲}}
+\end{center}
+{\textbf{内容提要:}\ 数项级数的概念与理论 \hspace{\fill} \textbf{Date:} March 20 2022    \\
+{ \textbf{主讲人:}} \ Famiglisti @CC98  \hspace{\fill} \textbf{Place:} 碧2党员之家 \\
+	\hrule
+
+    
+\paragraph*{\large 1 知识概要}
+\begin{enumerate}
+    \item  常数项级数的定义、收敛定义、常数项级数的基本性质
+    \item  两个重要的常数项级数(p级数、几何级数)\newline
+    1.p级数:$\sum_{n = 1}^{\infty} \frac{1}{n^p}$;\\
+    当p>1时,级数收敛;当$p\leq 1$时,级数发散 \\
+    2.几何级数：$\sum_{n = 0}^{\infty} aq^n $ ;\\
+    当$\left\lvert q\right\rvert \geq 1$时,级数发散;\\
+    当$\left\lvert q\right\rvert< $1时,级数收敛
+    
+    \item  正项级数审敛法\\
+    比较审敛法、比值审敛法、根值审敛法、积分审敛法
+    \item  交错级数及其审敛法\\
+    莱布尼茨判别法
+    \item  绝对收敛与条件收敛
+
+\end{enumerate}
+
+\paragraph*{\large 2 习题解析}
+
+\paragraph*{Problem 1} %\hfill \newline
+设常数k>0,且正向级数$\sum_{n = 1}^{\infty} a_n $收敛，
+则$\sum_{n = 1}^{\infty} \frac{\sqrt{a_n} }{n+k}  $
+\begin{enumerate}[label={[\Alph*]}] 
+    \item 绝对收敛
+    \item 条件收敛
+    \item 发散
+    \item 敛散性与k有关
+
+\end{enumerate}
+
+\paragraph*{Problem 2}
+设正数列$\left\{a_n\right\}$单调增加且有界，判断$\sum_{n = 1}^{\infty} (1-\frac{a_n}{a_{n+1}} )$的敛散性。 
+
+\paragraph*{Problem 3}
+设$0\leq a_n<\frac{1}{n}$，判断级数$\sum_{n = 1}^{\infty} a_n$,$\sum_{n = 1}^{\infty} (-1)^n a_n$,
+$\sum_{n = 1}^{\infty} \sqrt{a_n},\sum_{n = 1}^{\infty} (-1)^n a_n^2$中那些级数一定收敛?   
+\\
+\\
+\\
+\\
+\\
+\paragraph*{Problem 4}
+判断级数$\sum_{n = 1}^{\infty} (-1)^n \frac{\ln n}{\sqrt{n} }$的敛散性，若收敛，是绝对收敛还是条件收敛？  
+\\
+\\
+\\
+\\
+\\
+\paragraph*{Problem 5}
+判断$\sum_{n = 1}^{\infty} \sin \sqrt{n^2+1}\pi$ 的敛散性，当级数收敛时，判断是绝对收敛还是条件收敛。 
+\\
+\\
+\\
+\\
+\\
+\paragraph*{Problem 6}
+设f(x)在x=0的邻域内二阶连续可导,且$\lim_{x \to \infty} \frac{f(x)-1}{x^2}=2$.证明：级数
+$\sum_{n = 1}^{\infty} \left[f(\frac{1}{n})-1\right]$绝对收敛。    
+\\
+\\
+\\
+\\
+\\
+\paragraph*{Problem 7}
+设级数$\sum_{n = 1}^{\infty} u_n (u_n>0) $发散,$S_n=u_1+u_2+……+u_n$,证明：
+$\sum_{n = 1}^{\infty} \frac{u_n}{S_n^2}$收敛。  
+\\
+\\
+\\
+\paragraph*{Problem 8}
+设u_n>0,且$\lim_{x \to \infty} \frac{\ln \frac{1}{u_n} }{\ln n}=q$存在,
+证明:当q>1时,$\sum_{n = 1}^{\infty} u_n收敛;当q<1时,\sum_{n = 1}^{\infty} u_n$发散。 
+\\
+\\
+\\
+\\
+\\
+\paragraph*{Problem 9}
+设$f_0(x)$在$\left[0,a\right]$上连续，又$f_n(x)=\int_{0}^{x}f_{n-1}(t)  \,dt $ ,
+证明：级数$\sum_{n = 1}^{\infty}f_n(x)$在$\left[0,a\right]$上绝对收敛.  
+\end{document}

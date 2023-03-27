@@ -1,0 +1,237 @@
+\documentclass[12pt]{ctexbook}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[hidelinks,linkcolor=black]{hyperref}
+\usepackage{titletoc}%目录
+\usepackage[hmargin=21mm,vmargin=23mm]{geometry}
+\usepackage{fancyhdr}%页眉页脚
+\usepackage{caption}
+\usepackage{pifont}%提供带圈数字
+\usepackage{enumitem}
+\usepackage{lscape}
+\usepackage[amsmath]{ntheorem}
+
+\definecolor{colorAll}{RGB}{204, 255, 0}
+\definecolor{colorLine}{RGB}{255, 153, 0}
+\definecolor{colorWord}{RGB}{204, 51, 51}
+\definecolor{colorBall}{RGB}{51, 153, 204}
+\definecolor{colorCircle}{RGB}{0, 255, 0}
+\definecolor{colorBg}{RGB}{255, 255, 255}
+
+%页面背景颜色
+\pagecolor{colorBg}
+
+% 设置页眉线
+\renewcommand{\headrulewidth}{0.6pt}
+\ctexset{chapter={pagestyle=fancy}}%使每一章首页都有页眉
+
+%设置目录格式
+\setcounter{tocdepth}{2}
+\titlecontents{chapter}%章
+              [4.5em]%
+              {\addvspace{2.3mm}\bf}%
+              {\contentslabel{4.5em}}%
+              {}%
+              {\titlerule*[5pt]{$\cdot$}\contentspage}%
+\titlecontents{section}%节
+              [4.5em]%
+              {}%
+              {\contentslabel{3.3em}}%
+              {}%
+              {\titlerule*[5pt]{$\cdot$}\contentspage}%
+
+% 设置章节标题格式
+\ctexset {
+  chapter = {%章标题格式
+    beforeskip = 20pt,
+    fixskip = true,
+    format += \zihao{-2},
+    number = \arabic{chapter},
+    afterskip = 20pt,
+  },
+  section = {%节标题格式
+    name = {\S~}, 
+    format += \zihao{-3}\raggedright,
+  },
+  contentsname = {contents}%目录标题格式
+}
+
+
+% 设置图表题注的格式
+\renewcommand{\thefigure}{\thechapter{}.\arabic{figure}}%把序号改为 (章序号.节序号.图序号)的格式
+\renewcommand{\thetable}{\thesection{}.\arabic{table}}
+\setlength {\belowcaptionskip} {-10pt}%设置标题与下方正文的垂直间距
+\captionsetup {
+  format = hang,%悬挂缩进
+  font = footnotesize,%字号
+  labelfont = bf,%加黑
+  labelsep = quad,%分隔符为一个空格
+  skip = 8pt,%标题与图表内容的垂直间距
+}
+
+%定理环境格式
+{
+  \theoremstyle{plain}
+  \theorembodyfont{\upshape}
+  \theoremsymbol{\hfill$\square$\par}
+  % \theoremsymbol{\hfill\ensuremath{a\atop b}}
+  % \theoremsymbol{\rule{1ex}{1ex}}
+  \newtheorem{proof}{proof~}
+  \newtheorem{theorem}{theorem}[chapter]
+  \newtheorem{lemma}{lemma}[chapter]
+  \newtheorem{corollary}{corollary}[chapter]
+  \newtheorem{example}{example}[chapter]
+  \newtheorem{answer}{answer}[chapter]
+  \newtheorem{note}{note}[chapter]
+}
+
+
+
+%修改脚注编号为带圈数字
+\renewcommand{\thefootnote}{\ding{\numexpr171+\value{footnote}}}
+
+%自定义习题环境
+\newenvironment{exprcise}[1][Exercise]{\begin{center}\bfseries\zihao{-3} #1\end{center}}{}
+
+%修改列表项的编号
+\renewcommand{\theenumi}{\thesection.\arabic{enumi}}
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumi}{\theenumi}
+\setlist[enumerate,1]{itemsep=2pt, parsep=2pt}
+\setlist[enumerate,2]{itemsep=1pt, parsep=1pt, topsep=0pt, }
+
+
+\newcommand{\daochu}[1]{$G[\{ #1 \}]$}%为了解决1.4节插图时子图标题的问题
+
+
+
+\begin{document}
+
+  % 封面
+  \pagestyle{empty}
+
+
+  \frontmatter
+  % 目录
+  \tableofcontents
+  % 目录的页眉页脚
+  \pagestyle{empty}
+  \pagestyle{fancy}
+  \fancyhf{}%清除所有页眉页脚
+  \fancyhead[OL]{\zihao{-5}contents}
+  \fancyhead[OR]{$\cdot$~\thepage~$\cdot$}
+  \fancyhead[EL]{$\cdot$~\thepage~$\cdot$}
+  \fancyhead[ER]{\zihao{-5}contents}
+  \clearpage{\pagestyle{empty}\cleardoublepage}
+  
+  \mainmatter
+  % 正文的页眉页脚
+  \fancyhead[OL]{\zihao{-5} \nouppercase\leftmark}
+  \fancyhead[ER]{\zihao{-5} \nouppercase\rightmark}
+
+\chapter{轴向拉伸和压缩}
+\begin{enumerate}[label={\arabic*}] 
+    \item 正应力与切应力\\
+    正应力$\sigma$:应力与截面垂直的法向分量(离开截面为正)
+
+切应力$\tau $:应力与截面相切的切向分量(对截面
+内部（靠近截面）的点产生顺时针转向力矩的为正)
+
+  \item 斜截面上的应力:\\
+  
+\begin{align}
+    \sigma_\alpha=\frac{F}{A/\cos \alpha}\cos \alpha=\sigma\cos^2 \alpha \notag\\
+    \tau_\alpha=\frac{F}{A/\cos \alpha}\sin \alpha=\sigma\sin\alpha\cos\alpha \notag
+\end{align}
+
+\item 拉压杆的变形与胡克定律
+\begin{itemize}
+    \item 1、纵向线应变:$\varepsilon =\frac{\delta l}{l}$;2、横向线应变:$\varepsilon' =\frac{\delta d}{d}$;3、泊松比:$\nu =|\frac{\varepsilon '}{\varepsilon }|$
+    \item $\delta l=\frac{F_NL}{EA}$
+    \item $\varepsilon =\frac{\sigma }{E}$
+\end{itemize}
+
+\item 应变能
+\begin{itemize}
+    \item 应变能：$V_\varepsilon =\frac{F_N^2l}{2EA}$
+    \item 应变能密度:$v_\varepsilon=\frac{\sigma ^2}{2E}=\frac{E\sigma ^2}{2}$
+    \item 功能原理：在弹性体变形的过程中，积蓄在弹性体内的应变能$V_\varepsilon $数值上等于外力做功
+\end{itemize}
+\item 材料的力学性能
+\begin{enumerate}
+    \item 标准试样\\
+    圆截面：$l_0=5d_0 or l_0=10d_0$\\
+    矩形截面：$l_0=5.65\sqrt{A_0} or l_0=11.3\sqrt{A_0}$
+    \item 各变形阶段
+    \begin{itemize}
+        \item 弹性阶段：\\
+        弹性变形：外力卸去后能够恢复的变形；塑性变形（永久变形）：外力卸去后不能恢复的变形\\
+        a:$\sigma_e$,弹性极限,卸载后不发生塑性变形的极限\\
+        b:$\sigma_p$,比例极限，应力与应变符合胡克定律的最高限\\
+        \item 屈服阶段：\\
+        上屈服强度：在屈服阶段内，发生屈服应力首次下降前所对应的最高应力\\
+        下屈服强度（屈服极限）$\sigma_s$:不计初识瞬时效应时的最低应力\\
+        \item 强化阶段：\\
+        主要为塑性变形\\
+        强度极限$\sigma_b$,试样中名义应力的最大值\\
+        \item 局部变形阶段:\\
+        出现“缩颈”现象
+    \end{itemize}
+    衡量材料强度的指标，$\sigma_s,\sigma_b$
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.5\textwidth]{1-3.png}
+      \end{figure}
+    \item 铸铁与低碳钢
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.5\textwidth]{1-4.png}
+      \end{figure}
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.5\textwidth]{1-5.png}
+      \end{figure}
+\end{enumerate}
+\item 拉（压）杆的强度计算
+\begin{itemize}
+    \item 对于塑性材料：$\sigma_u=\sigma_s$
+    \item 对于脆性材料：$\sigma_u=\sigma_b$
+    \item 许用应力：$[\sigma]=\frac{\sigma_u}{n}$
+\end{itemize}
+\item 应力集中\\
+因杆件外形突然变化而引起局部应力急剧增大的现象
+
+理论应力集中因数:$K=\frac{\sigma_{max}}{\sigma_{nom}}$
+\begin{itemize}
+    \item $\sigma_{max}$,发生应力集中的截面上的最大应力
+    \item $\sigma_{nom}$,同一截面上按净面积算出的平均应力
+\end{itemize}
+\end{enumerate}
+
+\newpage
+
+\chapter{扭转}
+\begin{enumerate}[label={\arabic*}] 
+  \item 薄壁圆筒的扭转
+\end{enumerate}
+
+\chapter{组合变形及连接部分的计算}
+组合变形：构件几种变形所对应的应力属于同一数量级
+\begin{enumerate}[label={\arabic*}] 
+    \item 两相互垂直平面内的弯曲
+   
+    \begin{itemize}
+        \item $\sigma=\frac{M_y}{I_y}z-\frac{M_z}{I_z}y$
+        \item 中性轴方程:$\frac{M_y}{I_y}z_0-\frac{M_z}{I_z}y_0=0$
+    \end{itemize}
+  \item 拉(压)与弯曲的组合
+  
+  \end{enumerate}
+
+\end{document}
